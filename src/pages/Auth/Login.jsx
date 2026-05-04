@@ -30,13 +30,6 @@ const Login = () => {
             Continue with Github
           </Button>
         </Card>
-        <br></br>
-        <p className="mt-8 text-center text-sm text-slate-600">
-          Don't have an account?{' '}
-          <Link to="/signup" className="font-semibold text-primary hover:underline">
-            Sign up for free
-          </Link>
-        </p>
       </motion.div>
     </div>
   );

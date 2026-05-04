@@ -41,13 +41,6 @@ const Signup = () => {
             Continue with Github
           </Button>
         </Card>
-
-        <p className="mt-8 text-center text-sm text-slate-600">
-          Already have an account?{' '}
-          <Link to="/login" className="font-semibold text-primary hover:underline">
-            Sign In
-          </Link>
-        </p>
       </motion.div>
     </div>
   );
