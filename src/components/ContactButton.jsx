@@ -1,11 +1,12 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
+import authService from '../services/authService';
 
 export default function ContactButton() {
   const nav = useNavigate();
   return (
     <button 
-      onClick={() => window.location.href = 'http://localhost:3000/api/auth/github/auth'}
+      onClick={() => window.location.href = authService.getGithubAuthUrl()}
       className="rounded-full text-white font-medium px-8 py-3 sm:px-10 sm:py-3.5 md:px-12 md:py-4 text-sm sm:text-base md:text-lg hover:opacity-90 transition-opacity"
       style={{
         background: 'linear-gradient(123deg, #18011F 7%, #B600A8 37%, #7621B0 72%, #BE4C00 100%)',

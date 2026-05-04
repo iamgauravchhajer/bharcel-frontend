@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Check, X, MessageSquare, Mail, Send } from 'lucide-react';
 import { AnimatePresence, motion } from 'framer-motion';
+import authService from '../services/authService';
 
 const SectionBadge = ({ children }) => (
   <div className="liquid-glass rounded-full px-3.5 py-1 text-xs font-medium text-white font-body inline-block mb-6">
@@ -121,7 +122,7 @@ export default function Pricing() {
                       setShowContact(true);
                     } else {
                       localStorage.setItem('login_intent', 'upgrade');
-                      window.location.href = 'http://localhost:3000/api/auth/github/auth';
+                      window.location.href = authService.getGithubAuthUrl();
                     }
                   }} 
                   className={`w-full py-3.5 rounded-2xl text-sm font-medium transition-all duration-300 mt-auto ${plan.isPopular ? 'bg-[#a855f7] hover:bg-[#9333ea] text-white shadow-[0_0_20px_rgba(168,85,247,0.4)]' : 'bg-white/5 hover:bg-white/10 text-white border border-white/10'}`}

@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import Hls from 'hls.js';
 import { Zap, Terminal, Rocket, Shield } from 'lucide-react';
+import authService from '../services/authService';
 
 const HlsVideo = ({ src, className, style }) => {
   const videoRef = useRef(null);
@@ -96,7 +97,7 @@ export default function MockupFeatures() {
                 <p className="text-white/70 font-body font-light text-base leading-relaxed mb-8">
                   Stop switching between tabs. We bring all your data, analytics, and tools into a single, unified interface that works for you.
                 </p>
-                <button onClick={() => window.location.href = 'http://localhost:3000/api/auth/github/auth'} className="liquid-glass-strong rounded-full px-5 py-2.5 text-sm font-medium transition-transform hover:scale-105">
+                <button onClick={() => window.location.href = authService.getGithubAuthUrl()} className="liquid-glass-strong rounded-full px-5 py-2.5 text-sm font-medium transition-transform hover:scale-105">
                   Learn more
                 </button>
               </div>
@@ -131,7 +132,7 @@ export default function MockupFeatures() {
                       Connect your GitHub repo, configure your environment, and deploy to a global edge network — all in under 60 seconds.
                     </p>
                     <div className="flex items-center justify-center mb-6 font-body">
-                      <button onClick={() => window.location.href = 'http://localhost:3000/api/auth/github/auth'} className="bg-[#a855f7] hover:bg-[#9333ea] text-white rounded-[5px] px-5 py-1.5 text-[9px] sm:text-[10px] font-medium transition-colors shadow-[0_0_15px_rgba(168,85,247,0.4)]">
+                      <button onClick={() => window.location.href = authService.getGithubAuthUrl()} className="bg-[#a855f7] hover:bg-[#9333ea] text-white rounded-[5px] px-5 py-1.5 text-[9px] sm:text-[10px] font-medium transition-colors shadow-[0_0_15px_rgba(168,85,247,0.4)]">
                         Get Started
                       </button>
                     </div>
@@ -214,7 +215,7 @@ export default function MockupFeatures() {
                 <p className="text-white/70 font-body font-light text-base leading-relaxed mb-8">
                   Your project builds on its own. Our platform handles every branch, commit, and deployment—then ships it in real time. No manual devops. Ever.
                 </p>
-                <button onClick={() => window.location.href = 'http://localhost:3000/api/auth/github/auth'} className="liquid-glass-strong rounded-full px-5 py-2.5 text-sm font-medium transition-transform hover:scale-105">
+                <button onClick={() => window.location.href = authService.getGithubAuthUrl()} className="liquid-glass-strong rounded-full px-5 py-2.5 text-sm font-medium transition-transform hover:scale-105">
                   See how it works
                 </button>
               </div>
