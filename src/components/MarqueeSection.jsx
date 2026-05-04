@@ -43,7 +43,7 @@ function MarqueeVideo({ src, priority }) {
   }, []);
 
   return (
-    <div className="w-[420px] h-[270px] rounded-2xl shrink-0 overflow-hidden relative bg-[#1a1a1a]">
+    <div className="w-[280px] h-[180px] sm:w-[360px] sm:h-[230px] md:w-[420px] md:h-[270px] rounded-2xl shrink-0 overflow-hidden relative bg-[#1a1a1a]">
       {!loaded && <div className="absolute inset-0 bg-[#222] animate-pulse z-0" />}
       <video
         ref={videoRef}

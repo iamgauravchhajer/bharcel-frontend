@@ -7,7 +7,6 @@ const MockupFeatures = lazy(() => import('../components/MockupFeatures'));
 const AboutBharcel = lazy(() => import('../components/AboutBharcel'));
 const Pricing = lazy(() => import('../components/Pricing'));
 const Services = lazy(() => import('../components/Services'));
-const Projects = lazy(() => import('../components/Projects'));
 
 export default function LandingPage() {
   // Ensure the page starts at the top
@@ -26,7 +25,6 @@ export default function LandingPage() {
         AboutBharcel (contains About Bharcel + What Founders Say)
         Pricing
         Services
-        Projects
         FooterCTA
       */}
       <Hero />

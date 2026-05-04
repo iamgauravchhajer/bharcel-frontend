@@ -67,7 +67,7 @@ export default function FooterCTA() {
       </div>
       
       <div className="relative z-20 container mx-auto px-6 text-center flex flex-col items-center mt-10">
-        <h2 className="text-6xl md:text-7xl lg:text-8xl font-heading italic text-white leading-[0.85] mb-8 max-w-4xl">
+        <h2 className="text-[clamp(2.5rem,10vw,4rem)] sm:text-5xl md:text-7xl lg:text-8xl font-heading italic text-white leading-[0.85] mb-8 max-w-4xl">
           Stop building.<br/>Start shipping.
         </h2>
         <p className="text-white/60 font-body font-light text-base md:text-lg max-w-2xl mb-12">

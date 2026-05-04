@@ -10,7 +10,7 @@ const SectionBadge = ({ children }) => (
 );
 
 const SectionHeading = ({ children }) => (
-  <h2 className="text-4xl md:text-5xl lg:text-6xl font-heading italic text-white tracking-tighter mb-4 text-center">
+  <h2 className="text-[clamp(2.25rem,8vw,4rem)] font-heading italic text-white tracking-tighter mb-4 text-center">
     {children}
   </h2>
 );
