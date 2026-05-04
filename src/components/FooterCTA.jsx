@@ -93,7 +93,7 @@ export default function FooterCTA() {
             &copy; 2026 bharcel. All rights reserved.
           </div>
           <div className="flex gap-6 text-white/40 text-xs font-light">
-            <a href="https://github.com/Keshavcodes3/Shipify" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors">Github</a>
+            <a href="https://github.com/iamgauravchhajer/bharcel-frontend" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors">Github</a>
             <button onClick={() => setShowContact(true)} className="hover:text-white transition-colors">Contact</button>
             <button 
               onClick={() => window.location.href = '/docs'}
