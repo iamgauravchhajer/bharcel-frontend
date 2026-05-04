@@ -1,33 +1,13 @@
-import React, { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
-import { useAuth } from '../../hooks/useAuth';
+import React from 'react';
+import { Link } from 'react-router-dom';
+import authService from '../../services/authService';
 import Button from '../../ui/components/Button';
-import Input from '../../ui/components/Input';
 import Card from '../../ui/components/Card';
-import { Rocket, AlertCircle, CheckCircle2 } from 'lucide-react';
+import { Rocket, CheckCircle2 } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { FaGithub } from "react-icons/fa";
 
 const Signup = () => {
-  const [formData, setFormData] = useState({ name: '', email: '', password: '' });
-  const { signup, loading, error, clearError } = useAuth();
-  const navigate = useNavigate();
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    try {
-      await signup(formData);
-      navigate('/dashboard');
-    } catch (err) {
-      // Error handled by redux
-    }
-  };
-
-  const handleChange = (e) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
-    if (error) clearError();
-  };
-
   return (
     <div className="flex min-h-screen items-center justify-center bg-slate-50 px-4 py-12">
       <motion.div
@@ -56,60 +36,9 @@ const Signup = () => {
         </div>
 
         <Card className="p-8">
-          <form onSubmit={handleSubmit} className="space-y-6">
-            {error && (
-              <div className="flex items-center gap-3 rounded-xl bg-red-50 p-4 text-sm text-red-600 border border-red-100">
-                <AlertCircle className="h-5 w-5 shrink-0" />
-                <p>{error}</p>
-              </div>
-            )}
-
-            <Input
-              label="Full Name"
-              name="name"
-              placeholder="John Doe"
-              value={formData.name}
-              onChange={handleChange}
-              required
-            />
-
-            <Input
-              label="Email Address"
-              name="email"
-              type="email"
-              placeholder="name@example.com"
-              value={formData.email}
-              onChange={handleChange}
-              required
-            />
-
-            <Input
-              label="Password"
-              name="password"
-              type="password"
-              placeholder="••••••••"
-              value={formData.password}
-              onChange={handleChange}
-              required
-            />
-
-            <Button type="submit" className="w-full" isLoading={loading} size="lg">
-              Get Started
-            </Button>
-          </form>
-
-          <div className="relative my-8">
-            <div className="absolute inset-0 flex items-center">
-              <span className="w-full border-t border-slate-200"></span>
-            </div>
-            <div className="relative flex justify-center text-xs uppercase">
-              <span className="bg-white px-2 text-slate-500">Or join with</span>
-            </div>
-          </div>
-
-          <Button variant="secondary" className="w-full">
+          <Button variant="secondary" className="w-full" onClick={() => window.location.href = authService.getGithubAuthUrl()}>
             <FaGithub className="mr-2 h-5 w-5" />
-            Github
+            Continue with Github
           </Button>
         </Card>
 
