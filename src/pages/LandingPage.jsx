@@ -39,7 +39,6 @@ export default function LandingPage() {
         </section>
         <Pricing />
         <Services />
-        <Projects />
       </Suspense>
       
       <FooterCTA />
