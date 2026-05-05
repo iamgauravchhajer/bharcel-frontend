@@ -2,7 +2,7 @@ import React from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useAuth } from '../../hooks/useAuth';
 import Button from '../components/Button';
-import { Rocket, LogOut, User, LayoutGrid, Plus } from 'lucide-react';
+import { Zap, Rocket, LogOut, User, LayoutGrid, Plus } from 'lucide-react';
 
 const Navbar = () => {
   const { user, logout } = useAuth();
