@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Star, ChevronDown, BarChart3, BookOpen, Users, Rocket, GitBranch, GitCommitVertical, Settings, Box, Terminal } from 'lucide-react';
+import { Star, ChevronDown, BarChart3, BookOpen, Users, Rocket, GitBranch, GitCommitVertical, Settings, Box, Terminal, Menu, X } from 'lucide-react';
 import { API_BASE } from '../lib/api';
 
 const LazyVideo = ({ src, className }) => {
@@ -33,6 +33,7 @@ const LazyVideo = ({ src, className }) => {
 export default function Hero() {
   const nav = useNavigate();
   const [activeTab, setActiveTab] = useState('analyse');
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   useEffect(() => {
     const tabs = ['analyse', 'train', 'testing', 'deploy'];
@@ -48,7 +49,7 @@ export default function Hero() {
   return (
     <div className="bg-white font-['Inter'] w-full">
       {/* NAVIGATION */}
-      <nav className="px-6 py-4 flex items-center justify-between max-w-7xl mx-auto opacity-0 animate-fade-in-up" style={{ animationDelay: '0.1s' }}>
+      <nav className="px-6 py-4 flex items-center justify-between max-w-7xl mx-auto opacity-0 animate-fade-in-up relative" style={{ animationDelay: '0.1s' }}>
         <div className="flex items-center gap-2">
           <Star className="w-5 h-5 fill-black" />
           <span className="text-lg font-semibold text-black">Bharcel</span>
@@ -83,10 +84,59 @@ export default function Hero() {
           </a>
         </div>
 
-        <div className="flex items-center gap-4">
+        <div className="flex items-center gap-3">
           <button
             onClick={() => window.location.href = `${API_BASE}/auth/github/auth`}
-            className="bg-black text-white px-5 py-2.5 rounded-full text-sm font-medium hover:bg-gray-800 transition-colors flex items-center justify-center gap-2"
+            className="hidden md:flex bg-black text-white px-5 py-2.5 rounded-full text-sm font-medium hover:bg-gray-800 transition-colors items-center justify-center gap-2"
+          >
+            <svg viewBox="0 0 24 24" className="w-4 h-4 fill-current" aria-hidden="true">
+              <path fillRule="evenodd" clipRule="evenodd" d="M12 2C6.477 2 2 6.477 2 12c0 4.42 2.865 8.166 6.839 9.489.5.092.682-.217.682-.482 0-.237-.008-.866-.013-1.7-2.782.603-3.369-1.34-3.369-1.34-.454-1.156-1.11-1.462-1.11-1.462-.908-.62.069-.608.069-.608 1.003.07 1.531 1.03 1.531 1.03.892 1.529 2.341 1.087 2.91.831.092-.646.35-1.086.636-1.336-2.22-.253-4.555-1.11-4.555-4.943 0-1.091.39-1.984 1.029-2.683-.103-.253-.446-1.27.098-2.647 0 0 .84-.269 2.75 1.025A9.578 9.578 0 0112 6.836c.85.004 1.705.114 2.504.336 1.909-1.294 2.747-1.025 2.747-1.025.546 1.379.203 2.394.1 2.647.64.699 1.028 1.592 1.028 2.683 0 3.842-2.339 4.687-4.566 4.935.359.309.678.919.678 1.852 0 1.336-.012 2.415-.012 2.743 0 .267.18.578.688.48C19.138 20.161 22 16.418 22 12c0-5.523-4.477-10-10-10z" />
+            </svg>
+            Sign-up with Github
+          </button>
+
+          {/* Mobile Hamburger */}
+          <button
+            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+            className="md:hidden p-2 rounded-lg hover:bg-gray-100 transition-colors"
+          >
+            {mobileMenuOpen ? <X className="w-5 h-5 text-black" /> : <Menu className="w-5 h-5 text-black" />}
+          </button>
+        </div>
+      </nav>
+
+      {/* Mobile Menu */}
+      {mobileMenuOpen && (
+        <div className="md:hidden bg-white border-t border-gray-100 px-6 py-6 flex flex-col gap-4 animate-fade-in-up shadow-lg" style={{ animationDuration: '0.2s' }}>
+          <button 
+            onClick={() => { window.location.href = '/docs'; setMobileMenuOpen(false); }}
+            className="flex items-center gap-2 text-sm font-medium text-gray-700 hover:text-black py-2 border-b border-gray-100"
+          >
+            Read Docs <ChevronDown className="w-4 h-4" />
+          </button>
+          <button 
+            onClick={() => { document.getElementById('pricing')?.scrollIntoView({ behavior: 'smooth' }); setMobileMenuOpen(false); }}
+            className="text-sm font-medium text-gray-700 hover:text-black py-2 text-left border-b border-gray-100"
+          >
+            Pricing
+          </button>
+          <button 
+            onClick={() => { document.getElementById('about')?.scrollIntoView({ behavior: 'smooth' }); setMobileMenuOpen(false); }}
+            className="text-sm font-medium text-gray-700 hover:text-black py-2 text-left border-b border-gray-100"
+          >
+            About Us
+          </button>
+          <a 
+            href="https://discord.gg/yuMWZz4QG" 
+            target="_blank" 
+            rel="noopener noreferrer" 
+            className="text-sm font-medium text-gray-700 hover:text-black py-2 border-b border-gray-100"
+          >
+            Community
+          </a>
+          <button
+            onClick={() => window.location.href = `${API_BASE}/auth/github/auth`}
+            className="bg-black text-white px-5 py-3 rounded-full text-sm font-medium hover:bg-gray-800 transition-colors flex items-center justify-center gap-2 mt-2"
           >
             <svg viewBox="0 0 24 24" className="w-4 h-4 fill-current" aria-hidden="true">
               <path fillRule="evenodd" clipRule="evenodd" d="M12 2C6.477 2 2 6.477 2 12c0 4.42 2.865 8.166 6.839 9.489.5.092.682-.217.682-.482 0-.237-.008-.866-.013-1.7-2.782.603-3.369-1.34-3.369-1.34-.454-1.156-1.11-1.462-1.11-1.462-.908-.62.069-.608.069-.608 1.003.07 1.531 1.03 1.531 1.03.892 1.529 2.341 1.087 2.91.831.092-.646.35-1.086.636-1.336-2.22-.253-4.555-1.11-4.555-4.943 0-1.091.39-1.984 1.029-2.683-.103-.253-.446-1.27.098-2.647 0 0 .84-.269 2.75 1.025A9.578 9.578 0 0112 6.836c.85.004 1.705.114 2.504.336 1.909-1.294 2.747-1.025 2.747-1.025.546 1.379.203 2.394.1 2.647.64.699 1.028 1.592 1.028 2.683 0 3.842-2.339 4.687-4.566 4.935.359.309.678.919.678 1.852 0 1.336-.012 2.415-.012 2.743 0 .267.18.578.688.48C19.138 20.161 22 16.418 22 12c0-5.523-4.477-10-10-10z" />
@@ -94,7 +144,7 @@ export default function Hero() {
             Sign-up with Github
           </button>
         </div>
-      </nav>
+      )}
 
       {/* HERO SECTION */}
       <main className="px-6 pt-24 pb-16 max-w-7xl mx-auto text-center">
