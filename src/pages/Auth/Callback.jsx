@@ -14,8 +14,8 @@ const Callback = () => {
     const token = searchParams.get('token');
     
     if (token) {
-      // 1. Store token in localStorage
-      localStorage.setItem('token', token);
+      // 1. Store token using lib/auth
+      localStorage.setItem('vercel_clone_token', token);
       
       // 2. Fetch user profile to update Redux state
       dispatch(fetchMe())

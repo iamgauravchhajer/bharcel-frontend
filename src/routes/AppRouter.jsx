@@ -38,7 +38,7 @@ const AppRouter = () => {
   const { isAuthenticated, fetchMe } = useAuth();
 
   useEffect(() => {
-    if (localStorage.getItem('token')) {
+    if (localStorage.getItem('vercel_clone_token')) {
       fetchMe().catch(() => {});
     }
   }, [fetchMe]);

@@ -25,7 +25,7 @@ const authService = {
   },
 
   logout: () => {
-    localStorage.removeItem('token');
+    localStorage.removeItem('vercel_clone_token');
   },
 
   getGithubAuthUrl: () => {
