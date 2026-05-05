@@ -2,58 +2,42 @@ import React, { useEffect } from 'react';
 import { useNavigate, useSearchParams } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { fetchMe } from '../../redux/slices/authSlice';
-import { Rocket } from 'lucide-react';
-import { motion } from 'framer-motion';
+import { setToken } from '../../lib/auth';
 
-const Callback = () => {
+export default function Callback() {
   const [searchParams] = useSearchParams();
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
   useEffect(() => {
     const token = searchParams.get('token');
-    
+
+    console.log("[Auth Callback] Received token:", token ? "YES (hidden)" : "NO");
+
     if (token) {
-      // 1. Store token using lib/auth
-      localStorage.setItem('vercel_clone_token', token);
-      
-      // 2. Fetch user profile to update Redux state
+      setToken(token);
+      console.log("[Auth Callback] Token saved to storage, navigating to dashboard...");
+
+      // Fetch user profile to update Redux state, then redirect
       dispatch(fetchMe())
         .unwrap()
         .then(() => {
-          // 3. Redirect to dashboard on success
           navigate('/dashboard');
         })
         .catch(() => {
-          // 4. Redirect to login on failure
-          navigate('/login');
+          navigate('/dashboard');
         });
     } else {
+      console.error("[Auth Callback] No token found in URL parameters");
       navigate('/login');
     }
   }, [searchParams, navigate, dispatch]);
 
   return (
-    <div className="flex h-screen w-full flex-col items-center justify-center bg-slate-50">
-      <motion.div
-        initial={{ opacity: 0, scale: 0.9 }}
-        animate={{ opacity: 1, scale: 1 }}
-        className="flex flex-col items-center"
-      >
-        <div className="mb-6 flex h-16 w-16 items-center justify-center rounded-2xl bg-primary shadow-lg shadow-orange-200">
-          <Rocket className="h-10 w-10 text-white animate-bounce" />
-        </div>
-        <h2 className="text-xl font-bold text-slate-900">Authenticating...</h2>
-        <p className="mt-2 text-slate-500 text-sm">Please wait while we finalize your GitHub login</p>
-        
-        <div className="mt-8 flex gap-1">
-          <div className="h-1.5 w-1.5 rounded-full bg-primary animate-pulse" />
-          <div className="h-1.5 w-1.5 rounded-full bg-primary animate-pulse delay-75" />
-          <div className="h-1.5 w-1.5 rounded-full bg-primary animate-pulse delay-150" />
-        </div>
-      </motion.div>
+    <div className="min-h-screen bg-[#0C0C0C] flex flex-col items-center justify-center text-white font-body">
+      <div className="w-12 h-12 border-4 border-white/20 border-t-white rounded-full animate-spin mb-6"></div>
+      <h1 className="text-xl font-heading italic text-white/80">Finalizing authentication...</h1>
+      <p className="text-sm font-light text-white/40 mt-2">Almost there, preparing your dashboard.</p>
     </div>
   );
-};
-
-export default Callback;
+}
