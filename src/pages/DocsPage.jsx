@@ -59,10 +59,10 @@ export default function DocsPage() {
         <main className="flex-1 p-8 lg:p-16 max-w-4xl">
           <header className="mb-16">
             <button 
-              onClick={() => nav('/')}
+              onClick={() => nav('/dashboard')}
               className="flex items-center gap-2 text-white/40 hover:text-white transition-colors text-xs font-bold uppercase tracking-widest mb-8"
             >
-              <ArrowLeft className="w-4 h-4" /> Back
+              <ArrowLeft className="w-4 h-4" /> Back to Dashboard
             </button>
             <h1 className="text-5xl font-bold tracking-tighter mb-4">Documentation</h1>
             <p className="text-xl text-white/40 font-light">Everything you need to build and deploy with Bharcel.</p>
