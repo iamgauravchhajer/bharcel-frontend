@@ -67,7 +67,7 @@ export default function FooterCTA() {
       </div>
       
       <div className="relative z-20 container mx-auto px-6 text-center flex flex-col items-center mt-10">
-        <h2 className="text-[clamp(2.5rem,10vw,4rem)] sm:text-5xl md:text-7xl lg:text-8xl font-heading italic text-white leading-[0.85] mb-8 max-w-4xl">
+        <h2 className="text-6xl md:text-7xl lg:text-8xl font-heading italic text-white leading-[0.85] mb-8 max-w-4xl">
           Stop building.<br/>Start shipping.
         </h2>
         <p className="text-white/60 font-body font-light text-base md:text-lg max-w-2xl mb-12">
@@ -93,7 +93,7 @@ export default function FooterCTA() {
             &copy; 2026 bharcel. All rights reserved.
           </div>
           <div className="flex gap-6 text-white/40 text-xs font-light">
-            <a href="https://github.com/iamgauravchhajer/bharcel-frontend" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors">Github</a>
+            <a href="https://github.com/Keshavcodes3/Shipify" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors">Github</a>
             <button onClick={() => setShowContact(true)} className="hover:text-white transition-colors">Contact</button>
             <button 
               onClick={() => window.location.href = '/docs'}

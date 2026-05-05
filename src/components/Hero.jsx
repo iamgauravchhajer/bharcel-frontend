@@ -334,7 +334,8 @@ export default function Hero() {
           )}
         </div>
 
-        {/* Don't Have A Project Callout */}
+        {/* Company Logos & Callout */}
+        {/* Don't Have A Project Callout (Replacing Logos) */}
         <div className="mt-32 mb-0 flex flex-col items-center opacity-0 animate-fade-in-up w-full px-5" style={{ animationDelay: '0.8s' }}>
           <h2 className="font-heading italic font-normal text-[clamp(2rem,6vw,80px)] text-[#0C0C0C] mb-6 text-center leading-[0.9] tracking-tight">
             Don't Have A Project?

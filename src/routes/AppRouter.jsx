@@ -43,12 +43,8 @@ const AppRouter = () => {
     }
   }, [fetchMe]);
 
-  // DashboardPage has its own built-in navbar, so only show global navbar on project detail pages
-  const showNavbarRoutes = ['/admin'];
-  const showNavbar = isAuthenticated && (
-    showNavbarRoutes.includes(location.pathname) || 
-    location.pathname.startsWith('/project/')
-  );
+  // DashboardPage and AdminPage have their own built-in navbars
+  const showNavbar = isAuthenticated && location.pathname.startsWith('/project/');
 
   return (
     <div className="min-h-screen bg-background">
