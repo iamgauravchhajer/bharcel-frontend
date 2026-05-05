@@ -334,6 +334,26 @@ export default function Hero() {
           )}
         </div>
 
+        {/* Don't Have A Project Callout */}
+        <div className="mt-32 mb-0 flex flex-col items-center opacity-0 animate-fade-in-up w-full px-5" style={{ animationDelay: '0.8s' }}>
+          <h2 className="font-heading italic font-normal text-[clamp(2rem,6vw,80px)] text-[#0C0C0C] mb-6 text-center leading-[0.9] tracking-tight">
+            Don't Have A Project?
+          </h2>
+          <p className="text-gray-600 text-center max-w-2xl text-lg sm:text-xl font-light mb-10">
+            Build directly from our curated list of pre-built, production-ready templates.
+          </p>
+          <button
+            className="rounded-full text-white font-medium px-8 py-3 sm:px-10 sm:py-3.5 md:px-12 md:py-4 text-sm sm:text-base md:text-lg hover:opacity-90 transition-opacity"
+            style={{
+              background: 'linear-gradient(123deg, #18011F 7%, #B600A8 37%, #7621B0 72%, #BE4C00 100%)',
+              boxShadow: '0px 4px 4px rgba(181, 1, 167, 0.25), inset 4px 4px 12px #7721B1',
+              outline: '2px solid white',
+              outlineOffset: '-3px'
+            }}
+          >
+            Explore Templates ↓
+          </button>
+        </div>
       </main>
     </div>
   );
