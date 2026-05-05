@@ -29,8 +29,8 @@ const authService = {
   },
 
   getGithubAuthUrl: () => {
-    const backendUrl = import.meta.env.VITE_API_BASE_URL?.replace('/api', '') || 'http://localhost:3000';
-    return `${backendUrl}/api/auth/github/auth`;
+    const backendUrl = import.meta.env.VITE_API_URL || import.meta.env.VITE_API_BASE_URL || 'https://shipify-qqdx.onrender.com';
+    return `${backendUrl.replace(/\/api$/, '')}/api/auth/github/auth`;
   },
 };
 
