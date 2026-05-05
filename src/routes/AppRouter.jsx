@@ -6,9 +6,7 @@ import { useAuth } from '../hooks/useAuth';
 import Login from '../pages/Auth/Login';
 import Signup from '../pages/Auth/Signup';
 import Callback from '../pages/Auth/Callback';
-import Dashboard from '../pages/Dashboard/Dashboard';
 import ProjectDetails from '../pages/Project/ProjectDetails';
-import CreateProject from '../pages/Project/CreateProject';
 
 // Layout
 import Navbar from '../ui/layout/Navbar';
@@ -33,6 +31,7 @@ const PrivateRoute = ({ children }) => {
 const AdminPage = React.lazy(() => import('../pages/AdminPage.jsx'));
 const DocsPage = React.lazy(() => import('../pages/DocsPage.jsx'));
 const LandingPage = React.lazy(() => import('../pages/LandingPage.jsx'));
+const DashboardPage = React.lazy(() => import('../pages/DashboardPage.jsx'));
 
 const AppRouter = () => {
   const { isAuthenticated, fetchMe } = useAuth();
@@ -44,8 +43,12 @@ const AppRouter = () => {
     }
   }, [fetchMe]);
 
-  const hideNavbarRoutes = ['/', '/docs', '/login', '/signup', '/auth/callback'];
-  const showNavbar = isAuthenticated && !hideNavbarRoutes.includes(location.pathname);
+  // DashboardPage has its own built-in navbar, so only show global navbar on project detail pages
+  const showNavbarRoutes = ['/admin'];
+  const showNavbar = isAuthenticated && (
+    showNavbarRoutes.includes(location.pathname) || 
+    location.pathname.startsWith('/project/')
+  );
 
   return (
     <div className="min-h-screen bg-background">
@@ -61,8 +64,7 @@ const AppRouter = () => {
             <Route path="/docs" element={<DocsPage />} />
 
             {/* Private Routes */}
-            <Route path="/dashboard" element={<PrivateRoute><Dashboard /></PrivateRoute>} />
-            <Route path="/new" element={<PrivateRoute><CreateProject /></PrivateRoute>} />
+            <Route path="/dashboard" element={<PrivateRoute><DashboardPage /></PrivateRoute>} />
             <Route path="/project/:projectId" element={<PrivateRoute><ProjectDetails /></PrivateRoute>} />
             <Route path="/admin" element={<PrivateRoute><AdminPage /></PrivateRoute>} />
 
