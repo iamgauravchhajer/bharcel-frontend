@@ -36,6 +36,7 @@ const LandingPage = React.lazy(() => import('../pages/LandingPage.jsx'));
 
 const AppRouter = () => {
   const { isAuthenticated, fetchMe } = useAuth();
+  const location = useLocation();
 
   useEffect(() => {
     if (localStorage.getItem('vercel_clone_token')) {
@@ -43,10 +44,13 @@ const AppRouter = () => {
     }
   }, [fetchMe]);
 
+  const hideNavbarRoutes = ['/', '/docs', '/login', '/signup', '/auth/callback'];
+  const showNavbar = isAuthenticated && !hideNavbarRoutes.includes(location.pathname);
+
   return (
     <div className="min-h-screen bg-background">
-      {isAuthenticated && <Navbar />}
-      <main className={isAuthenticated ? "pt-16" : ""}>
+      {showNavbar && <Navbar />}
+      <main className={showNavbar ? "pt-16" : ""}>
         <React.Suspense fallback={<div className="flex h-screen items-center justify-center bg-black"><div className="h-8 w-8 animate-spin rounded-full border-4 border-primary border-t-transparent" /></div>}>
           <Routes>
             {/* Public Routes */}
